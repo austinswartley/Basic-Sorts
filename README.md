@@ -1,0 +1,1 @@
+Homework assignment for Dr. Shim's CSC310 S24 class. Implements bubble sort, selection sort, merging of arrays, and binary search in two languages. I chose Python and C++ as my choices for languages. 
