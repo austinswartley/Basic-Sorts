@@ -65,7 +65,7 @@ def binary_search(arr, target):
             mid = (low + high) // 2
         else:                           #on target
             break
-    print("Bianary Search:")
+    print("\nBianary Search:")
     if arr[mid] == target:
         print("Found",target)
     else:
