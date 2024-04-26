@@ -38,17 +38,19 @@ def bubble_sort(arr):
 def merge(l_arr, r_arr):
     arr = []
     l, r = 0,0
-    while l < len(l_arr) - 1 and r < len(r_arr) - 1:
+    while l < len(l_arr)  and r < len(r_arr):
         if l_arr[l] < r_arr[r]:
             arr.append(l_arr[l])
             l += 1
         else:
             arr.append(r_arr[r])
             r += 1
-    if l == len(l_arr)-1:
-        arr.append(r_arr[r])
+    if len(l_arr) - l == 0:
+        for r in range(r, len(r_arr)):
+            arr.append(r_arr[r])
     else:
-        arr.append(l_arr[l])
+        for l in range(l, len(l_arr)):
+            arr.append(l_arr[l])
     print("\nMerge:")
     print(arr)
     return arr
@@ -67,7 +69,7 @@ def binary_search(arr, target):
             break
     print("\nBianary Search:")
     if arr[mid] == target:
-        print("Found",target)
+        print("Found target @ ",mid)
     else:
         print("Target not found")
 

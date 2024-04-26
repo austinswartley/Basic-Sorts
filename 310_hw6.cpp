@@ -10,6 +10,7 @@ vector<float> fillArr(fstream& file, vector<float>);
 vector<float> bubbleSort(vector<float> arr1);
 vector<float> selectionSort(vector<float> arr2);
 vector<float> merge(vector<float> left, vector<float> right);
+void binarySearch(vector<float>, float);
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     vector<float> bigArr; 
     string name = ""; 
     fstream file; 
+    float target; 
 
     //cout << "Enter File: ";
     //cin >> name;
@@ -33,7 +35,10 @@ int main(int argc, char *argv[])
     arr1 = bubbleSort(arr1); 
     arr2 = selectionSort(arr2);
     bigArr = merge(arr1, arr2);
-
+    cout << "Target to search for: ";
+    cin >> target;
+    cout << endl; 
+    binarySearch(bigArr, target);
     return 0; 
 }
 
@@ -110,28 +115,59 @@ vector<float> selectionSort(vector<float> arr){
 
 vector<float> merge(vector<float> left, vector<float> right){
     vector<float> arr; 
-    int l,r = 0;
-    while ((l < left.size()-1) && (r < right.size()-1)){
+    int l = 0;
+    int r = 0; 
+    while ((l < left.size()) && (r < right.size())){
         if (left[l] < right[r]){
-            arr.push_back(left[l]);
+            float elt = left[l];
+            arr.push_back(elt);
             l++;
         }
         else{
-            arr.push_back(right[r]);
+            float elt = right[r];
+            arr.push_back(elt);
             r++;
         }
     }
-    if (l == left.size()-1){
-        arr.push_back(right[r]);
+    if (left.size() - l == 0){
+        for (r; r < right.size(); r++){
+        float elt = right[r];
+        arr.push_back(elt); 
+        }
     }
     else{
-        arr.push_back(left[l]);
+        for (l; l < left.size(); l++){
+        float elt = left[l];
+        arr.push_back(elt);
+        }
     }
     cout << "Merge:" << endl;
-    vector<float>::iterator it;
-    for (it = right.begin();it < right.end(); it++){
-        cout << *it << " ";
+    for (int i = 0; i < arr.size(); i++){
+        cout << arr[i] << " "; 
     }
-    cout << endl; 
+    cout << endl << endl; 
     return arr; 
+}
+
+void binarySearch(vector<float> arr, float target){
+    int low = 0;
+    int high = arr.size() - 1; 
+    int mid = (low + high) / 2; 
+
+    while (low < mid){
+        if (arr[mid] > target){
+            high = mid;
+            mid = (low + high) / 2; 
+        }
+        else if (arr[mid] < target){
+            low = mid; 
+            mid = (low + high) / 2;
+        }
+        else
+            break; 
+    }
+    if (arr[mid] == target)
+        cout << "Found target @ idx " << mid << "." << endl;
+    else
+        cout << "Target not found" << endl; 
 }
