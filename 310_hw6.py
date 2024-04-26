@@ -2,6 +2,10 @@ import sys
 
 
 def parse_input(name):
+    '''
+    function to open a file and then fill a list with the values form that file
+    returns the list
+    '''
     file = open(name)
     raw = (file.read()).split()
     array = []
@@ -11,6 +15,11 @@ def parse_input(name):
     return array
 
 def selection_sort(arr):
+    '''
+    sorts a list using selection sort
+    input is an unsorted list
+    outputs a sorted list
+    '''
     idx = 0
     while idx < len(arr):
         min_idx = idx
@@ -28,6 +37,11 @@ def selection_sort(arr):
     return arr
 
 def bubble_sort(arr):
+    '''
+    sorts a list using bubble sort
+    input is an unsorted list
+    outputs a sorted list
+    '''
     for i in range(len(arr)):
         for m in range(0, len(arr)-i-1):
             if arr[m] > arr[m+1]:
@@ -36,6 +50,11 @@ def bubble_sort(arr):
     print(arr)   
     return arr
 def merge(l_arr, r_arr):
+    '''
+    merges two sorted arrays
+    takes two sorted arrays as input
+    returns a list in ascending order
+    '''
     arr = []
     l, r = 0,0
     while l < len(l_arr)  and r < len(r_arr):
@@ -56,6 +75,11 @@ def merge(l_arr, r_arr):
     return arr
 
 def binary_search(arr, target):
+    '''
+    searches for a target in a sorted list
+    returns result on the command line
+    takes a sorted list and a target
+    '''
     low, high = 0, len(arr)-1
     mid = (low + high) // 2
     while low < mid:

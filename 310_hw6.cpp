@@ -1,3 +1,6 @@
+//MinGW would not recognize .txt files on the command line
+//I ended up needed to hardwire some values. Did not try it on a linux
+//system where it could've worked without faulter
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -41,7 +44,11 @@ int main(int argc, char *argv[])
     binarySearch(bigArr, target);
     return 0; 
 }
-
+/*
+    function to open a file and ensure that it is not empty
+    the file stream is a referece that gets used between the fill function and this one
+    takes a file name/path as input
+*/
 void fileOpen(string name, fstream& file){
     file.open(name);
     string num; 
@@ -57,6 +64,11 @@ void fileOpen(string name, fstream& file){
     return; 
 }
 
+/*
+    function to fill the array and make sure that it is full of float/reals
+    takes the fstream that was vetted in fileOpen()
+    returns the filled vector
+*/
 vector<float> fillArr(fstream& file, vector<float> arr){
     string num; 
     file >> num;
@@ -75,7 +87,10 @@ vector<float> fillArr(fstream& file, vector<float> arr){
     file.close();
     return arr; 
 }
-
+/*
+    sorts an array with bubble sort. needs a vector
+    inputs an unsorted vector and returns a sorted vector
+*/
 vector<float> bubbleSort(vector<float> arr){
     for(int i = 0; i < arr.size(); i++){
         for (int m = 0; m < arr.size()-i-1; m++){
@@ -91,7 +106,10 @@ vector<float> bubbleSort(vector<float> arr){
     cout << endl << endl; 
     return arr;
 }
-
+/*
+    sorts and array with selection sort. needs a vector
+    inputs an unsorted vector and returns a sorted vector
+*/
 vector<float> selectionSort(vector<float> arr){
     int minIdx,m = 0; 
     for (int i = 0; i < arr.size(); i++){
@@ -112,7 +130,10 @@ vector<float> selectionSort(vector<float> arr){
     cout << endl << endl; 
     return arr;
 }
-
+/*
+    merges two arrays and only requires two sorted arrays as input
+    returns one merged array sorted
+*/
 vector<float> merge(vector<float> left, vector<float> right){
     vector<float> arr; 
     int l = 0;
@@ -148,7 +169,11 @@ vector<float> merge(vector<float> left, vector<float> right){
     cout << endl << endl; 
     return arr; 
 }
-
+/*
+    searches through a sorted array for a target
+    requires a sorted array and a target
+    returns success/failure on the command line
+*/
 void binarySearch(vector<float> arr, float target){
     int low = 0;
     int high = arr.size() - 1; 
