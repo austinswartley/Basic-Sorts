@@ -13,8 +13,8 @@ vector<float> merge(vector<float> left, vector<float> right);
 
 int main(int argc, char *argv[])
 {
-    float arr1[MAX];
-    float arr2[MAX];
+    vector<float> arr1;
+    vector<float> arr2;
     int size1,size2 = 0;
     vector<float> bigArr; 
     string name = ""; 
@@ -39,8 +39,6 @@ int main(int argc, char *argv[])
 
 void fileOpen(string name, fstream& file){
     file.open(name);
-    file.clear();
-    file.seekg(0);
     string num; 
     file >> num;
 
@@ -49,10 +47,9 @@ void fileOpen(string name, fstream& file){
         file.close();
         exit(-1);
     }
-    else{
-
-    }
-return; 
+    file.clear();
+    file.seekg(0);
+    return; 
 }
 
 vector<float> fillArr(fstream& file, vector<float> arr){
@@ -63,7 +60,9 @@ vector<float> fillArr(fstream& file, vector<float> arr){
         arr.push_back(elt);
         file >> num;
     }
-
+        file >> num;
+        float elt = stof(num);
+        arr.push_back(elt);
     for(int i = 0; i < arr.size(); i++){
         cout << arr[i] << " "; 
     }
