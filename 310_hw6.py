@@ -6,7 +6,7 @@ def parse_input(name):
     raw = (file.read()).split()
     array = []
     for x in raw:
-        array.append(int(x))
+        array.append(float(x))
     print(array)
     return array
 
