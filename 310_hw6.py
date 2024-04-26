@@ -38,14 +38,14 @@ def bubble_sort(arr):
 def merge(l_arr, r_arr):
     arr = []
     l, r = 0,0
-    while l < 20 and r < 20:
+    while l < len(l_arr) - 1 and r < len(r_arr) - 1:
         if l_arr[l] < r_arr[r]:
             arr.append(l_arr[l])
             l += 1
         else:
             arr.append(r_arr[r])
             r += 1
-    if l == 20:
+    if l == len(l_arr)-1:
         arr.append(r_arr[r])
     else:
         arr.append(l_arr[l])
